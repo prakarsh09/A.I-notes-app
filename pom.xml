@@ -72,10 +72,13 @@
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
+<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
 <dependency>
     <groupId>org.springframework.data</groupId>
     <artifactId>spring-data-redis</artifactId>
+    <version>3.3.3</version>
 </dependency>
+
 <dependency>
     <groupId>org.springframework.ai</groupId>
     <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
