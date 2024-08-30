@@ -10,8 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Service;
 
-import com.example.notesapp.entity.JwtRequest;
-import com.example.notesapp.entity.JwtResponse;
+
 import com.example.notesapp.entity.Notes;
 import com.example.notesapp.repo.NotesRepository;
 import com.fasterxml.jackson.annotation.JsonClassDescription;

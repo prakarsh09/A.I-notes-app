@@ -1,10 +1,7 @@
 package com.example.notesapp.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
