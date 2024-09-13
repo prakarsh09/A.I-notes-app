@@ -1,0 +1,260 @@
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+min-height: 100vh;
+background:rgb(26, 26, 26)
+
+}
+.Content{
+
+  width :470px;
+  background: transparent;
+
+  padding: 25px 25px 30px;
+
+}
+.Content textarea{
+
+  width: 100%;
+  height: 59px;
+  padding: 15px;
+ 
+  outline: none;
+  resize:none ;
+  font-size: 16px;
+  margin-top: 20px;
+  border-color: purple;
+  border-radius: 7px;
+  padding-right: 0px;
+  padding-left: 0px;
+  
+  
+  
+  
+}
+textarea:is(:focus,:valid){
+  border-color:grey;
+  border: 5px;
+  
+  
+}
+textarea::-webkit-scrollbar{
+  width:0px
+}
+.title{
+padding: 25px 25px 30px; 
+width: 470px ;
+
+}
+.title textarea{
+
+  width: 100%;
+  height: 30px;
+  padding: 15px;
+ 
+  outline: none;
+  resize:none ;
+  font-size: 16px;
+  margin-top: 20px;
+  border-color: purple;
+  border-radius: 7px;
+  padding-right: 0px;
+  padding-left: 0px;
+
+}
+.butt{
+  padding:2px 5px 5px;
+  height: 20px;
+  width: 60px;
+  margin-left: 30vh;
+  display: grid;
+  place-items: center;
+  /* width: fit-content; */
+ 
+}
+.butt .btnsave{
+border-radius: 5px;
+width: 60px;
+background: rgb(116, 167, 179);
+border:1px
+}
+
+
+
+.note{
+  display:inline-block;
+  width: 200px;
+  margin-top: 30px;
+  /* border-color: black; */
+  box-shadow: 0px 0px 0px #d6d6d639, inset 24px 24px 30px #d6d6d639;
+  border-radius: 20px;
+  border-width: 2px;
+  background: hsl(0, 0%, 0%);
+  margin-left: 30px;
+  padding-left: 10px;
+  color: white;
+}
+
+
+.Viewnote{
+  height: 100vh;
+}
+
+
+
+.card {
+
+width: 200px;
+display: inline-block;
+margin-top: 20px;
+margin-left: 30px;
+}
+.card-text{
+ container-type: inline-size;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+ -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.home{
+  background:black;
+  height: 50px;
+  width: 100%;
+  display:inline-block;
+  position: absolute;
+  top: 0px;
+  left:0px;
+  
+}
+
+.home button{
+border-radius: 5px;
+width: 60px;
+
+
+}
+.appname{
+  color: aliceblue;
+  font-family:cursive;
+  font-size: 30px;
+}
+.Viewnote{
+  margin-top: 100px;
+}
+.signupbutt{
+border-radius: 5px;
+  /* margin-left: 25vh; */
+  width:10vw;
+  height: 3rem;
+  border: none;
+  background: #373737;
+  color: rgb(255, 255, 255);
+  
+}
+
+.edit{
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: rgb(66, 66, 66);
+  color: white;
+  padding: 5px;
+  margin: 10px;
+  width: 60px;
+  height: 40px;
+  border: none;
+}
+
+.delete{
+  overflow: hidden;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: rgb(66, 66, 66);
+  color: white;
+  padding: 5px;
+  margin: 10px;
+  width: 60px;
+  height: 40px;
+  border: none;
+}
+
+.notebutton{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+#createbut {
+position: relative;
+top: -13px;
+  /* padding-left: 33px;
+  padding-right: 33px;
+  padding-bottom: 16px;
+  padding-top: 16px; */
+  width: 100px;
+  height: 30px;
+  border-radius: 9px;
+  background: #464642;
+  color: white;
+  border: none;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s;
+ }
+ 
+ #createbut:hover {
+  box-shadow: 7px 5px 56px -14px #f0f0f0;
+ }
+ 
+ #createbut:active {
+  transform: scale(0.97);
+  box-shadow: 7px 5px 56px -10px #C3D900;
+ }
+
+ /* From Uiverse.io by Custyyyy */ 
+#viewbut {
+  position: relative;
+  top: -15px;
+  margin: 10px;
+    width: 100px;
+    height: 30px;
+    border-radius: 9px;
+    background: #464642;
+    color: white;
+    border: none;
+    font-family: inherit;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+#viewbut:hover {
+ box-shadow: 7px 5px 56px -14px #f0f0f0;
+}
+
+#viewbut:active {
+ transform: scale(0.97);
+ box-shadow: 7px 5px 56px -10px #C3D900;
+}
+.navbutt{
+  display: flex;
+  position: absolute;
+ margin-top: 1px;
+  
+}
+.logout{
+  position: relative;
+  /* margin-left: 210vh; */
+  /* margin-top: 0px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: right;
+}
+.logoutbut{
+  position: relative;
+  border-radius: 5px;
+}
