@@ -20,7 +20,7 @@ import lombok.Data;
 @Entity
 @Table(name="notes")
 
-public class Notes extends Audit implements Serializable{
+public class Notes extends Audit implements Serializable,Comparable<Notes>{
     
  @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -34,5 +34,10 @@ private String content;
 @JoinColumn(name="user_id",nullable=false)
 @OnDelete(action=OnDeleteAction.CASCADE)
 private Employee empl;
+
+@Override
+public int compareTo(Notes that) {
+   return this.id-that.id;
+}
 
 }

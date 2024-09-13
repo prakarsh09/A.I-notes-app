@@ -2,6 +2,8 @@ package com.example.notesapp.controller;
 
 
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +16,7 @@ import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
-
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -62,38 +64,57 @@ this.chatClient=builder.build();
     
 
     @GetMapping("/viewNotes")
-   
+  
     public List<Notes> viewnotes(){
         Authentication newauth=SecurityContextHolder.getContext().getAuthentication();
         DefaultOAuth2User principal=(DefaultOAuth2User)newauth.getPrincipal();
           Map<String , Object> attributes=principal.getAttributes();
           String email= attributes.getOrDefault("email", "").toString();
           Employee user=empRepo.findByEmail(email);
-        List<Notes> notes=notesRepository.findNotesByUser(user.getId());
+       
       
-      
-        return notes;
+        return getCachedNotes(user);
     }
+    @Cacheable(key = "#user.id", value = "notes")
+public List<Notes> getCachedNotes(Employee user) {
+    // Fetch and sort the user's notes
+    List<Notes> notes = notesRepository.findNotesByUser(user.getId());
+    notes.sort((note1, note2) -> Integer.compare(note2.getId(), note1.getId()));
+    
+    return notes;  // This will be cached with the user's ID as the key
+}
 
     @PostMapping("/saveNotes")
-    @CachePut(value="note",key = "#notes.id")
+   
     public String saveNotes(@RequestBody Notes notes){
         Authentication newauth=SecurityContextHolder.getContext().getAuthentication();
           DefaultOAuth2User principal=(DefaultOAuth2User)newauth.getPrincipal();
             Map<String , Object> attributes=principal.getAttributes();
             String email= attributes.getOrDefault("email", "").toString();
-        Employee e=empRepo.findByEmail(email);
-       notes.setEmpl(e);
-       if(e!=null){
-       notesRepository.save(notes);
-       return"success";
-       }
-       return"not success";
+        Employee user=empRepo.findByEmail(email);
+      return save(notes, user);
 
 }
+@CacheEvict(key = "#user.id", value = "notes")
+public String save(Notes note,Employee user){
+  note.setEmpl(user);
+  if(user!=null){
+  notesRepository.save(note);
+  return"success";
+  }
+  return"not success";
+}
 @PostMapping("/delete")
-@CacheEvict(value="note",key = "#id")
-public String getMethodName(@RequestBody delid id) {
+public String deletenotebynoteid(@RequestBody delid id){
+  Authentication newauth=SecurityContextHolder.getContext().getAuthentication();
+  DefaultOAuth2User principal=(DefaultOAuth2User)newauth.getPrincipal();
+    Map<String , Object> attributes=principal.getAttributes();
+    String email= attributes.getOrDefault("email", "").toString();
+    Employee user=empRepo.findByEmail(email);
+    return delete(id, user);
+}
+@CacheEvict(key ="#user.id",value = "notes")
+public String delete(delid id, Employee user) {
   
    notesRepository.deleteById(id.getId());
     return "success";
@@ -115,7 +136,6 @@ public String askGpt(@RequestParam("prompt") String prompt){
 
 
 
- 
  
     
     

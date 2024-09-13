@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -24,6 +25,9 @@ public class Oauth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 
 @Autowired    
 private EmpRepo empRepo;
+
+@Value("${frontend.url.return}")
+private String furl;
 
 
     
@@ -50,7 +54,7 @@ private EmpRepo empRepo;
                 SecurityContextHolder.getContext().setAuthentication(securityAuth);
             }
             this.setAlwaysUseDefaultTargetUrl(true);
-        this.setDefaultTargetUrl("http://localhost:8080/viewnotes");
+        this.setDefaultTargetUrl(furl);
         super.onAuthenticationSuccess(request, response, authentication);
       
     }
