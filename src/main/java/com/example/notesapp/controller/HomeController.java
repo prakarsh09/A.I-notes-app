@@ -122,14 +122,18 @@ public String delete(delid id, Employee user) {
 
 @GetMapping("/ask")
 public String askGpt(@RequestParam("prompt") String prompt){
-    SystemMessage systemMessage= new SystemMessage("You are a helpful assistant answering questions on notes made by user");
+    SystemMessage systemMessage= new SystemMessage("You are a helpful assistant with name Friday answering questions on notes made by user");
     UserMessage userMessage=new UserMessage(prompt);
+    try{
     return this.chatClient.prompt()
     .system(systemMessage.getContent())
     .user(userMessage.getContent())
-    .functions("GetNotesWithTitle")
+    .functions("GetNotesWithTitle","GetUrlContent")
     .call()
-    .content();
+    .content();}
+    catch(Exception e){
+      return "Unable to understand";
+    }
 }
 
 
